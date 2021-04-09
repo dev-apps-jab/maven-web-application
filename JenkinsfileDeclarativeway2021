@@ -1,0 +1,62 @@
+pipeline
+{
+    agent any
+    tools
+    {
+       maven 'maven3.6.3'
+    }
+    triggers{
+        pollSCM('* * * * *')
+    }
+    options{
+        timestamps()
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3'))
+    }
+    stages{
+        stage('checkoutCode')
+        {
+            steps{
+            git branch: 'development', credentialsId: '7775f7b3-39c1-40d7-8b29-c7feea3286a5', url: 'https://github.com/dev-apps-jab/maven-web-application.git'
+        }
+        }
+        stage('BUILD')
+        {
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        stage('executesonarqubeReport')
+        {
+            steps{
+                sh "mvn sonar:sonar"
+            }
+        }
+        stage('uploadartifactintoNexus')
+        {
+            steps{
+                sh "mvn deploy"
+            }
+        }
+        stage('DeploytoTomcat')
+        {
+            steps{
+                deploy adapters: [tomcat9(credentialsId: '57320d3f-e48e-40a8-b3c4-41d1ec788084', path: '', url: 'http://15.206.74.86:8080/')], contextPath: null, war: '**/maven-web-application.war'
+            }
+        }
+    }
+    post{
+        success{
+            emailext body: '''BUILD-Success Declarativeway
+
+Regards,
+devops.''', subject: 'BUILD-Success Declarativeway', to: 'jabeenadevops@gmail.com,jabeenasyed4@gmail.com'
+        }
+        failure{
+            emailext body: '''BUILD-Failure Declarativeway
+
+Regards,
+devops.''', subject: 'BUILD-Failure Declarativeway', to: 'jabeenadevops@gmail.com,jabeenasyed4@gmail.com'
+        }
+    }
+     
+}
