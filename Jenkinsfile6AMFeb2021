@@ -1,6 +1,20 @@
 node
 {
     def mavenHome=tool name:"maven3.6.3"
+    //echo "GitHub BranhName ${env.BRANCH_NAME}"
+  //echo "Jenkins Job Number ${env.BUILD_NUMBER}"
+  echo "Jenkins Node Name ${env.NODE_NAME}"
+  
+  echo "Jenkins Home ${env.JENKINS_HOME}"
+  echo "Jenkins URL ${env.JENKINS_URL}"
+  echo "JOB Name ${env.JOB_NAME}"
+  
+  properties([
+    buildDiscarder(logRotator(numToKeepStr: '3')),
+    pipelineTriggers([
+        pollSCM('* * * * *')
+    ])
+  ])
   stage('CheckoutCode') 
   {
       git branch: 'development', credentialsId: '7775f7b3-39c1-40d7-8b29-c7feea3286a5', url: 'https://github.com/dev-apps-jab/maven-web-application.git'
