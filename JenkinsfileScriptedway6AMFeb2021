@@ -23,7 +23,7 @@ node('nodejsinstance')
   {
       sh "${mavenHome}/bin/mvn clean package"
   }
-  /*
+  
   stage('executesonarqubereport')
   {
      sh "${mavenHome}/bin/mvn sonar:sonar"
@@ -38,7 +38,7 @@ node('nodejsinstance')
     sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.0.184.116:/opt/apache-tomcat-9.0.44/webapps/"
 }  
   }
-  */
+  
   stage('sendemailnotification')
   {
       emailext body: '''BUILD-OVER scriptedway,
