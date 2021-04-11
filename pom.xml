@@ -96,13 +96,13 @@
 	<distributionManagement>
 	
 	    <repository>
-	      <id>nexus</id>
+	      <id>reena</id>
 	      <name>Releases Repository</name>
 	      <url>http://65.2.83.116:8081/repository/wallmart-releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
-	      <id>nexus</id>
+	      <id>reena</id>
 	      <name>Snapshot Repository </name>
 	      <url>http://65.2.83.116:8081/repository/wallmart-snapshot/</url>
 	    </snapshotRepository>
