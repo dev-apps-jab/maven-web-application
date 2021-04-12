@@ -1,4 +1,4 @@
-node('nodejsinstance')
+node
 {
     def mavenHome=tool name:"maven3.6.3"
     //echo "GitHub BranhName ${env.BRANCH_NAME}"
@@ -23,7 +23,7 @@ node('nodejsinstance')
   {
       sh "${mavenHome}/bin/mvn clean package"
   }
-  /*
+  
   stage('executesonarqubereport')
   {
      sh "${mavenHome}/bin/mvn sonar:sonar"
@@ -35,10 +35,10 @@ node('nodejsinstance')
   stage('DeployAPPintoTomcat')
   {
     sshagent(['ad0cbb9d-27f6-42ef-abac-610183594330']) {
-    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.0.184.116:/opt/apache-tomcat-9.0.44/webapps/"
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.234.204.177:/opt/apache-tomcat-9.0.44/webapps/"
 }  
   }
-  */
+  
   stage('sendemailnotification')
   {
       emailext body: '''BUILD-OVER scriptedway,
