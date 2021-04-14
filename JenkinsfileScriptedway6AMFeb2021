@@ -5,9 +5,9 @@ node
   //echo "Jenkins Job Number ${env.BUILD_NUMBER}"
   echo "Jenkins Node Name is -->${env.NODE_NAME}"
   
-  echo "Jenkins Home ${env.JENKINS_HOME}"
-  echo "Jenkins URL ${env.JENKINS_URL}"
-  echo "JOB Name ${env.JOB_NAME}"
+  echo "Jenkins Home is--> ${env.JENKINS_HOME}"
+  echo "Jenkins URL --> ${env.JENKINS_URL}"
+  echo "JOB Name --> ${env.JOB_NAME}"
   
   properties([
     buildDiscarder(logRotator(numToKeepStr: '3')),
