@@ -8,7 +8,7 @@ node
   echo "Jenkins Home is--> ${env.JENKINS_HOME}"
   echo "Jenkins URL --> ${env.JENKINS_URL}"
   echo "JOB Name --> ${env.JOB_NAME}"
-  
+  echo "editing this for practice"
   properties([
     buildDiscarder(logRotator(numToKeepStr: '3')),
     pipelineTriggers([
