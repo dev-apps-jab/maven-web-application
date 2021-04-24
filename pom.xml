@@ -99,13 +99,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Releases Repository</name>
-	      <url>http://13.233.63.203:8081/repository/wallmart-releases/</url>
+	      <url>http:http://65.1.134.64:8081/repository/flipcart-releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Snapshot Repository </name>
-	      <url>http://13.233.63.203:8081/repository/wallmart-snapshot/</url>
+	      <url>http://65.1.134.64:8081/repository/flipcart-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
